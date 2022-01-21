@@ -6,7 +6,9 @@ import {getContacts, deleteContact} from '../../actions/contacts';
 
 export class Contacts extends Component {
   static propTypes = {
-    contacts: PropTypes.array.isRequired
+    contacts: PropTypes.array.isRequired,
+    getContacts: PropTypes.func.isRequired,
+    deleteContact: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -38,7 +40,7 @@ export class Contacts extends Component {
                     <td>
                       <button 
                         onClick={this.props.deleteContact.bind(this, contact.id)}
-                        className="btn btn-danger- btn-sm">
+                        className="btn btn-danger btn-sm">
                         Delete
                       </button>
                     </td>
@@ -57,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getContacts, deleteContact }
+  { getContacts, deleteContact}
   )(Contacts);

@@ -1,4 +1,4 @@
-import { GET_CONTACTS , DELETE_CONTACT} from '../actions/types.js';
+import { GET_CONTACTS , DELETE_CONTACT, ADD_CONTACT} from '../actions/types.js';
 
 const initialState = {
     contacts: []
@@ -15,6 +15,11 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 contacts: state.contacts.filter(contact => contact.id !== action.payload)
+            }
+        case ADD_CONTACT:
+            return {
+                ...state,
+                contacts: [...state.contacts, action.payload]
             }
         default:
             return state;
