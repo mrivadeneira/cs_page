@@ -25,17 +25,18 @@ export class Form extends Component {
     this.props.addContact(contact);
     this.setState({
       name: '',
-      mobile:'',
+      mobile: '',
       email: '',
       message: '',
     });
   };
 
+
   render() {
     const { name, mobile, email, message } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Lead</h2>
+        <h2>Add Contact</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Name</label>
