@@ -1,8 +1,8 @@
 import axios from 'axios';
 import errors from '../reducers/errors';
-import { GET_CONTACTS, DELETE_CONTACT, ADD_CONTACT, GET_ERRORS } from './types';
-import { CREATE_MESSAGE } from './types';
-import { createMessage } from './messages';
+import { GET_CONTACTS, DELETE_CONTACT, ADD_CONTACT} from './types';
+// import { CREATE_MESSAGE } from './types';
+import { createMessage, returnErrors } from './messages';
 
 //GET CONTACTS
 
@@ -16,7 +16,7 @@ export const getContacts = () => dispatch => {
         });
     })
     
-    .catch(err => console.log(err));
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 }
 
 //DELETE CONTACT
@@ -47,14 +47,5 @@ export const addContact = (contact) => dispatch => {
         });
     })
     
-    .catch(err => {
-        const errors = {
-            msg: err.response.data,
-            status: err.response.status
-        }
-        dispatch({
-            type: GET_ERRORS,
-            payload: errors
-        });
-    });
-}
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
